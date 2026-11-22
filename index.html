@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+  <meta charset="utf-8"/>
+  <!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=2dd4da0c-d7e0-4ef1-ba75-ae0534df4af2
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   PsicoCit · Citas psicológicas para estudiantes
+  </title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   :root {
+  --bg:#f4faff;
+  --card:#fff;
+  --ink:#12304a;
+  --soft:#52708a;
+  --sky:#bfe3fb;
+  --sky2:#e3f3fd;
+  --blue:#2b86c5;
+  --deep:#17608f;
+  --ok:#2e9e6b;
+  --warn:#d98a1d;
+  --bad:#d1495b;
+  --line:#d5e7f5;
+  --r:18px;
+}
+* {
+  box-sizing:border-box;
+  margin:0;
+}
+html {
+  scroll-behavior:smooth;
+}
+body {
+  font-family:'Nunito Sans',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.6;
+}
+h1,h2,h3 {
+  font-family:'Fraunces',Georgia,serif;
+  line-height:1.15;
+}
+a {
+  color:inherit;
+}
+button {
+  font:inherit;
+  cursor:pointer;
+}
+:focus-visible {
+  outline:3px solid var(--blue);
+  outline-offset:2px;
+}
+header {
+  position:sticky;
+  top:0;
+  z-index:5;
+  background:rgba(255,255,255,.9);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+nav {
+  max-width:1080px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 20px;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.logo {
+  font-family:'Fraunces',serif;
+  font-weight:700;
+  font-size:1.4rem;
+  color:var(--deep);
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.logo i {
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#fff,var(--sky) 55%,var(--blue));
+}
+.links {
+  display:flex;
+  gap:4px;
+  flex-wrap:wrap;
+}
+.links button {
+  background:none;
+  border:0;
+  padding:8px 14px;
+  border-radius:99px;
+  color:var(--soft);
+  font-weight:700;
+}
+.links button:hover {
+  background:var(--sky2);
+}
+.links button.on {
+  background:var(--sky);
+  color:var(--deep);
+}
+main {
+  max-width:1080px;
+  margin:auto;
+  padding:0 20px 60px;
+}
+.view {
+  display:none;
+}
+.view.on {
+  display:block;
+}
+.hero {
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:30px;
+  align-items:center;
+  padding:50px 0 30px;
+}
+.hero h1 {
+  font-size:clamp(2.2rem,5vw,3.6rem);
+  color:var(--deep);
+  margin-bottom:16px;
+}
+.hero p {
+  color:var(--soft);
+  font-size:1.1rem;
+  max-width:46ch;
+  margin-bottom:24px;
+}
+.cta {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.btn {
+  border:0;
+  border-radius:99px;
+  padding:12px 24px;
+  font-weight:700;
+  background:var(--blue);
+  color:#fff;
+  transition:background .2s;
+}
+.btn:hover {
+  background:var(--deep);
+}
+.btn.alt {
+  background:var(--sky2);
+  color:var(--deep);
+}
+.btn.alt:hover {
+  background:var(--sky);
+}
+.btn.sm {
+  padding:6px 14px;
+  font-size:.85rem;
+}
+.btn.bad {
+  background:#fde8eb;
+  color:var(--bad);
+}
+.breath {
+  display:grid;
+  place-items:center;
+  aspect-ratio:1;
+  max-width:380px;
+  margin:auto;
+  width:100%;
+  border-radius:50%;
+  background:radial-gradient(circle,var(--sky2),transparent 70%);
+}
+.orb {
+  width:62%;
+  aspect-ratio:1;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#fff,var(--sky) 50%,var(--blue));
+  display:grid;
+  place-items:center;
+  text-align:center;
+  color:var(--deep);
+  font-weight:700;
+  box-shadow:0 20px 60px rgba(43,134,197,.35);
+  animation:br 10s ease-in-out infinite;
+}
+.orb small {
+  display:block;
+  font-weight:400;
+  font-size:.8rem;
+}
+@keyframes br {
+  0% {
+    transform:scale(.8);
+  }
+  40% {
+    transform:scale(1.15);
+  }
+  100% {
+    transform:scale(.8);
+  }
+}
+.steps {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin:30px 0;
+}
+.card {
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  padding:22px;
+}
+.steps .card h3 {
+  font-size:1.15rem;
+  margin-bottom:6px;
+  color:var(--deep);
+}
+.steps p,.muted {
+  color:var(--soft);
+  font-size:.95rem;
+}
+h2.t {
+  font-size:2rem;
+  color:var(--deep);
+  margin:36px 0 6px;
+}
+.grid2 {
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:20px;
+  align-items:start;
+  margin-top:20px;
+}
+label {
+  display:block;
+  font-weight:700;
+  font-size:.88rem;
+  margin:12px 0 4px;
+}
+input,select,textarea {
+  width:100%;
+  font:inherit;
+  padding:10px 12px;
+  border:1.5px solid var(--line);
+  border-radius:12px;
+  background:#fbfdff;
+  color:var(--ink);
+}
+input:focus,select:focus,textarea:focus {
+  border-color:var(--blue);
+  outline:0;
+}
+.tabs {
+  display:flex;
+  gap:6px;
+  margin-bottom:6px;
+}
+.tabs button {
+  flex:1;
+  padding:9px;
+  border:0;
+  border-radius:12px;
+  background:var(--sky2);
+  color:var(--deep);
+  font-weight:700;
+}
+.tabs button.on {
+  background:var(--blue);
+  color:#fff;
+}
+.auth {
+  max-width:440px;
+  margin:40px auto;
+}
+.msg {
+  font-size:.9rem;
+  margin-top:10px;
+  min-height:1.2em;
+  color:var(--bad);
+}
+.msg.ok {
+  color:var(--ok);
+}
+.cita {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
+}
+.cita:last-child {
+  border:0;
+}
+.cita b {
+  display:block;
+}
+.acts {
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.tag {
+  display:inline-block;
+  padding:2px 12px;
+  border-radius:99px;
+  font-size:.78rem;
+  font-weight:700;
+}
+.Pendiente {
+  background:#fdf1dc;
+  color:var(--warn);
+}
+.Confirmada {
+  background:#dff4ea;
+  color:var(--ok);
+}
+.Reprogramada {
+  background:var(--sky);
+  color:var(--deep);
+}
+.Cancelada {
+  background:#fde8eb;
+  color:var(--bad);
+}
+.top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:34px;
+}
+.chips {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:16px 0;
+}
+.chips button {
+  border:1.5px solid var(--line);
+  background:#fff;
+  border-radius:99px;
+  padding:6px 16px;
+  font-weight:700;
+  color:var(--soft);
+}
+.chips button.on {
+  background:var(--sky);
+  border-color:var(--sky);
+  color:var(--deep);
+}
+.lib {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:16px;
+}
+.lib .card {
+  cursor:pointer;
+  text-align:left;
+  transition:transform .2s,box-shadow .2s;
+  font:inherit;
+  color:inherit;
+}
+.lib .card:hover {
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(43,134,197,.18);
+}
+.lib .em {
+  font-size:1.8rem;
+}
+.lib h3 {
+  font-size:1.1rem;
+  margin:6px 0;
+}
+dialog {
+  border:0;
+  border-radius:var(--r);
+  padding:26px;
+  max-width:540px;
+  width:92%;
+  color:var(--ink);
+  box-shadow:0 30px 80px rgba(18,48,74,.3);
+}
+dialog::backdrop {
+  background:rgba(18,48,74,.4);
+}
+dialog p {
+  margin:10px 0;
+}
+.sos {
+  background:var(--sky2);
+  border-radius:var(--r);
+  padding:16px 20px;
+  margin-top:30px;
+  color:var(--deep);
+}
+footer {
+  text-align:center;
+  color:var(--soft);
+  font-size:.85rem;
+  padding:24px;
+}
+@media(max-width:780px) {
+  .hero,.grid2,.steps {
+    grid-template-columns:1fr;
+  }
+  .breath {
+    max-width:260px;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .orb {
+    animation:none;
+  }
+  html {
+    scroll-behavior:auto;
+  }
+}
+.mood {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:16px 0 4px;
+  align-items:center;
+}
+.mood button {
+  border:1.5px solid var(--line);
+  background:#fff;
+  border-radius:99px;
+  padding:8px 16px;
+  font-weight:700;
+  color:var(--deep);
+}
+.mood button:hover {
+  background:var(--sky2);
+}
+dialog ol {
+  margin:10px 0 10px 22px;
+}
+dialog li {
+  margin:6px 0;
+}
+.nota {
+  background:var(--sky2);
+  border-radius:12px;
+  padding:10px 14px;
+  margin-top:12px;
+  font-size:.92rem;
+  color:var(--deep);
+}
+footer a {
+  color:var(--soft);
+}
+.slot-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:8px;
+  margin:10px 0;
+}
+.slot {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 10px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fbfdff;
+  font-weight:600;
+}
+.slot input {
+  width:auto;
+  margin:0;
+}
+.time-entry {
+  display:flex;
+  gap:8px;
+  align-items:end;
+  max-width:380px;
+}
+.time-entry label {
+  flex:1;
+}
+  
+/* Paneles y estados del flujo de citas */
+.section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.panel-title{font-size:1.15rem;color:var(--deep);margin-bottom:6px}
+.cita-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0}
+.cita-card.pending{border-left:4px solid var(--warn)}
+.cita-card.confirmed{border-left:4px solid var(--ok)}
+.cita-card.proposal{border-left:4px solid var(--blue);background:#f5fbff}
+.cita-meta{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;color:var(--soft);font-size:.9rem}
+.status-note{border-radius:12px;padding:10px 12px;margin-top:10px;background:var(--sky2);color:var(--deep);font-size:.92rem}
+.dashboard-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:18px;margin-top:18px;align-items:start}
+.day-list{display:grid;gap:8px}
+.helper-note{font-size:.82rem;color:var(--soft);margin-top:5px}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.slot-note{font-size:.82rem;color:var(--soft);font-weight:400}
+@media(max-width:780px){.dashboard-grid{grid-template-columns:1fr}}
+
+  </style>
+ </head>
+ <body>
+  <header>
+   <nav>
+    <a class="logo" href="#inicio">
+     <i>
+     </i>
+     PsicoCit
+    </a>
+    <div class="links" id="links">
+     <button data-go="inicio">
+      Inicio
+     </button>
+     <button data-go="biblioteca">
+      Biblioteca
+     </button>
+     <button data-go="estudiante">
+      Soy estudiante
+     </button>
+     <button data-go="psicologo">
+      Acceso profesional
+     </button>
+    </div>
+   </nav>
+  </header>
+  <main>
+   <!-- INICIO -->
+   <section class="view" id="v-inicio">
+    <div class="hero">
+     <div>
+      <h1>
+       Hablar con alguien también es estudiar mejor
+      </h1>
+      <p>
+       Pide tu cita con un psicólogo de tu institución en menos de un minuto y sigue su estado desde aquí.
+      </p>
+      <div class="cta">
+       <button class="btn" data-go="estudiante">
+        Pedir una cita
+       </button>
+       <button class="btn alt" data-go="biblioteca">
+        Explorar la biblioteca
+       </button>
+      </div>
+     </div>
+     <div class="breath">
+      <div class="orb">
+       <div id="bt">
+        Inhala
+        <small>
+         sigue el ritmo
+        </small>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="steps">
+     <div class="card">
+      <h3>
+       1. Crea tu cuenta
+      </h3>
+      <p>
+       Regístrate con tu correo institucional.
+      </p>
+     </div>
+     <div class="card">
+      <h3>
+       2. Elige día y hora
+      </h3>
+      <p>
+       Escoge fecha, hora y modalidad, y cuéntanos brevemente el motivo.
+      </p>
+     </div>
+     <div class="card">
+      <h3>
+       3. Sigue tu cita
+      </h3>
+      <p>
+       La psicóloga podrá confirmarla o proponerte otro horario; tú decides si aceptas el cambio.
+      </p>
+     </div>
+    </div>
+    <div class="card" style="margin-top:18px">
+     <h3>Tu bienestar y tu privacidad</h3>
+     <p class="muted">Solicita acompañamiento sin escribir detalles íntimos en el formulario. Comparte lo necesario para que la psicóloga pueda orientarte; los asuntos personales puedes conversarlos durante la cita.</p>
+    </div>
+    <div class="sos">
+     <b>
+      ¿Es una urgencia?
+     </b>
+     Si tu vida o la de alguien está en peligro, llama ya al
+     <b>
+      123
+     </b>
+     (Colombia) o acude a urgencias. PsicoCit no es un servicio de emergencias.
+    </div>
+   </section>
+   <!-- BIBLIOTECA -->
+   <section class="view" id="v-biblioteca">
+    <h2 class="t">
+     Biblioteca de orientación emocional
+    </h2>
+    <p class="muted">
+     Lecturas cortas y ejercicios para cuidarte mientras esperas tu cita.
+    </p>
+    <div class="mood" id="mood">
+    </div>
+    <div class="chips" id="chips">
+    </div>
+    <div class="lib" id="lib">
+    </div>
+   </section>
+   <!-- ESTUDIANTE -->
+   <section class="view" id="v-estudiante">
+   </section>
+   <!-- PSICÓLOGO -->
+   <section class="view" id="v-psicologo">
+   </section>
+  </main>
+  <footer>
+   PsicoCit · Un espacio sencillo para pedir acompañamiento. ·
+   <a data-go="psicologo" href="#psicologo">
+    Acceso profesional
+   </a>
+  </footer>
+  <dialog id="dlg">
+  </dialog>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js">
+  </script>
+  <script>
+   const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const TABLA_DISPONIBILIDAD='disponibilidad';
+   const MARCADOR_CALENDARIO='psicocit_agenda_v3';
+   const HORAS_ATENCION=Array.from({length:11},(_,i)=>`${String(i+6).padStart(2,'0')}:00`);
+   const DIAS_ATENCION=[1,2,3,4,5];
+   const DIAS_RESERVA=90;
+   const VISTAS=['inicio','biblioteca','estudiante','psicologo'];
+   let me={rol:null},cat='Todas',modoAuth='login',perfilError=null,migracionAgenda=null,agendaVacia=null;
+const R=(categoria,emoji,titulo,duracion,intro,pasos,nota)=>({categoria,emoji,titulo,duracion,intro,pasos,nota});
+const RECURSOS=[
+R('Ansiedad','🌊','Antes de un examen','3 minutos','Los nervios antes de evaluarte son normales: tu cuerpo se prepara para un reto. Este ejercicio te trae de vuelta al presente.',['Mira a tu alrededor y nombra 5 cosas que ves.','Toca 4 objetos y nota su textura.','Escucha 3 sonidos, huele 2 cosas e identifica 1 sabor.','Termina con tres respiraciones lentas: inhala 4 segundos y exhala 6.'],'Úsalo también la noche anterior, si empiezas a imaginar todo lo que podría salir mal.'),
+R('Ansiedad','🫧','Respiración 4-6','2 minutos','Exhalar más largo de lo que inhalas le indica a tu cuerpo que puede bajar la alarma.',['Siéntate con la espalda apoyada y los hombros sueltos.','Inhala por la nariz contando hasta 4.','Exhala despacio por la boca contando hasta 6.','Repite de 2 a 5 minutos, o sigue la esfera de la página de inicio.'],'Si te mareas, respira más suave y haz una pausa. No hay que forzar el aire.'),
+R('Ansiedad','🌀','Cuando la mente no para','5 minutos','Darle vueltas a lo mismo no resuelve el problema, solo cansa. Ordenar los pensamientos ayuda a soltarlos.',['Escribe todo lo que te preocupa, sin filtro, durante 3 minutos.','Marca con una estrella lo que sí depende de ti.','Para cada estrella, escribe el primer paso pequeño que podrías dar hoy.','Lo que no depende de ti, déjalo en el papel por ahora.'],'Puedes reservar 15 minutos al día como "hora de preocuparte" y posponer ahí los pensamientos que lleguen a otras horas.'),
+R('Estrés','🗓️','Organiza tu semana sin agobiarte','4 minutos','Cuando todo parece urgente, lo primero es ver el tamaño real de lo que tienes.',['Anota todas tus entregas y exámenes en un solo lugar.','Cada mañana elige solo las 3 tareas que más importan.','Trabaja en bloques de 25 minutos con 5 de pausa.','Reserva una tarde por semana sin estudiar.'],'Hacer menos cosas con calma rinde más que empezar muchas con ansiedad.'),
+R('Estrés','☕','Pausas que sí descansan','3 minutos','Revisar el celular no descansa a tu cerebro. Estas pausas sí.',['Cada hora, levántate y estira cuello, hombros y espalda por 2 minutos.','Mira un punto lejano durante 20 segundos para descansar los ojos.','Toma agua y respira profundo tres veces.','Sal a ver luz natural al menos una vez al día.'],'Una pausa corta cada hora te ayuda a concentrarte durante más tiempo.'),
+R('Estrés','💆','Relajación muscular rápida','5 minutos','Cuando estás estresado acumulas tensión sin darte cuenta, sobre todo en mandíbula y hombros.',['Aprieta los puños 5 segundos y suéltalos de golpe.','Sube los hombros hacia las orejas 5 segundos y déjalos caer.','Aprieta mandíbula y rostro 5 segundos y suelta.','Recorre así piernas y espalda, notando la diferencia entre tensión y descanso.'],'Hazlo sentado, antes de estudiar o antes de dormir.'),
+R('Sueño','🌙','Dormir mejor en época de entregas','3 minutos','Dormir poco empeora la memoria y el ánimo. Proteger tu sueño también es estudiar.',['Acuéstate y levántate a horas parecidas, incluso en fin de semana.','Evita la cafeína después de las 3 p. m.','Deja el celular lejos de la cama o en silencio.','Si te asaltan las preocupaciones, anótalas en un papel para mañana.'],'Si llevas más de dos semanas durmiendo mal, cuéntaselo a la psicóloga o a tu médico.'),
+R('Sueño','😴','Rutina de 20 minutos antes de dormir','4 minutos','Tu cerebro necesita una señal de que el día terminó.',['Baja las luces y deja las pantallas 30 minutos antes.','Toma una ducha tibia o una infusión sin cafeína.','Escribe 3 cosas que salieron bien hoy.','Haz la respiración 4-6 acostado hasta sentir sueño.'],'Si no te duermes en 20 minutos, levántate a hacer algo tranquilo y vuelve a la cama cuando tengas sueño.'),
+R('Autoestima','🌱','Hablarte con más amabilidad','3 minutos','La voz crítica en tu cabeza suele ser más dura de lo que serías con otra persona.',['Anota el pensamiento duro, por ejemplo "soy un fracaso".','Pregúntate qué le dirías a un amigo en tu situación.','Reescríbelo con ese tono: "me fue mal hoy, pero puedo aprender de esto".','Cada noche escribe una cosa que hiciste bien, por pequeña que sea.'],'Equivocarte no define tu valor: es parte de aprender.'),
+R('Autoestima','🤝','Cómo pedir ayuda','2 minutos','Pedir ayuda es una decisión valiente, y casi siempre te hace sentir mejor.',['Elige a una persona de confianza: familiar, amigo, docente o la psicóloga.','Empieza con una frase simple: "Últimamente me siento sobrepasado y quiero hablar con alguien".','Cuéntale qué necesitas: que te escuche, que te acompañe o que te ayude con algo concreto.','Si no te sientes listo, pide una cita aquí: puedes contar solo lo que quieras.'],'Si sientes que no puedes más o piensas en hacerte daño, pide ayuda ya: llama al 123 o acude a urgencias.'),
+R('Emociones','🎨','Ponerle nombre a lo que sientes','4 minutos','Identificar una emoción con precisión ayuda a que pierda intensidad.',['Detente y pregúntate dónde la sientes en el cuerpo: pecho, estómago, garganta.','Busca una palabra más precisa que "mal": ¿triste, cansado, decepcionado, solo, preocupado?','Complétala por escrito: "Me siento ___ porque ___".','Pregúntate qué necesitas ahora: descanso, compañía, claridad o un abrazo.'],'Todas las emociones dan información. Ninguna es mala por sí misma.'),
+R('Emociones','🛑','Decir que no sin culpa','3 minutos','Aceptarlo todo por miedo a quedar mal también agota.',['Antes de responder, gana tiempo: "déjame pensarlo y te aviso".','Revisa si tienes tiempo y energía reales para eso.','Responde claro y amable: "Hoy no puedo, gracias por pensar en mí".','No des explicaciones largas: un no breve es suficiente.'],'Decir no a algo es decir sí a tu descanso y a tus prioridades.'),
+R('Emociones','🧭','Adaptarte a un lugar nuevo','4 minutos','Extrañar tu casa o sentirte solo en un lugar nuevo es muy común y suele mejorar con el tiempo.',['Crea una rutina pequeña: horarios de comida, sueño y estudio.','Habla con tu familia o amigos de siempre con regularidad.','Únete a un grupo, club o actividad que te guste.','Dale tiempo: adaptarse puede tomar semanas o meses.'],'Si la tristeza dura varias semanas y afecta tu día a día, agenda una cita.')
+];
+const MOODS=[['😟','Ansioso','Ansiedad'],['😩','Agotado','Estrés'],['😴','Sin dormir','Sueño'],['😔','Decaído','Autoestima'],['😠','Frustrado','Emociones']];
+
+const fecha=f=>new Date(f+'T00:00').toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long'});
+const hoy=()=>{const d=new Date();return new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,10)};
+
+/* ---------- Conexión con Supabase ---------- */
+const SB_URL='https://bolxpkqwuvgvgdudnmnv.supabase.co';
+const SB_KEY='sb_publishable_J8AUjO9kPSeuVnfprIA8hA_rvydHgNF'; // clave pública: es seguro que esté aquí
+const sb=supabase.createClient(SB_URL,SB_KEY);
+const h5=h=>String(h).slice(0,5);
+const MSG={'23505':'Ese horario ya está ocupado. Elige otro.','42501':'No tienes permiso para hacer eso. Pide al administrador que revise los permisos de la base de datos.','23514':'Datos no válidos. Revisa la fecha, la hora y el motivo.'};
+const errTxt=e=>e?.code==='P0001'?e.message:(MSG[e?.code]||e?.message||'No se pudo completar la acción. Inténtalo de nuevo.');
+async function horasDisponibles(fecha){
+  const {data,error}=await sb.from(TABLA_DISPONIBILIDAD).select('hora').eq('fecha',fecha).order('hora');
+  if(error)throw error;
+  const disponibles=(data||[]).map(x=>h5(x.hora));
+  if(!DIAS_ATENCION.includes(new Date(fecha+'T00:00:00').getDay()))return [];
+  if(disponibles.length)return disponibles.filter(h=>HORAS_ATENCION.includes(h));
+  if(agendaVacia===null){
+    const desde=hoy(),hasta=fechaTrasDias(desde,DIAS_RESERVA-1);
+    const {data:agenda,error:agendaError}=await sb.from(TABLA_DISPONIBILIDAD).select('fecha').gte('fecha',desde).lte('fecha',hasta).limit(1);
+    if(agendaError)throw agendaError;
+    agendaVacia=(agenda||[]).length===0;
+  }
+  return agendaVacia?HORAS_ATENCION:[];
+}
+const horasFuturas=(disponibles,fecha)=>disponibles.filter(h=>fecha!==hoy()||h>new Date().toTimeString().slice(0,5));
+function fechaTrasDias(fecha,dias){
+  const d=new Date(fecha+'T00:00:00');
+  d.setDate(d.getDate()+dias);
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function proximaFechaAtencion(){
+  for(let i=0;i<7;i++){
+    const fechaCandidata=fechaTrasDias(hoy(),i);
+    if(DIAS_ATENCION.includes(new Date(fechaCandidata+'T00:00:00').getDay()))return fechaCandidata;
+  }
+  return hoy();
+}
+async function fechasParaReservar(){
+  const desde=hoy(),hasta=fechaTrasDias(desde,DIAS_RESERVA-1);
+  const {data,error}=await sb.from(TABLA_DISPONIBILIDAD).select('fecha,hora').gte('fecha',desde).lte('fecha',hasta);
+  if(error)throw error;
+  agendaVacia=(data||[]).length===0;
+  if(agendaVacia){
+    const fechas=[];
+    for(let i=0;i<DIAS_RESERVA;i++){
+      const fechaCandidata=fechaTrasDias(desde,i);
+      if(DIAS_ATENCION.includes(new Date(fechaCandidata+'T00:00:00').getDay())
+        &&horasFuturas(HORAS_ATENCION,fechaCandidata).length)fechas.push(fechaCandidata);
+    }
+    return fechas;
+  }
+  return [...new Set((data||[])
+    .filter(d=>DIAS_ATENCION.includes(new Date(d.fecha+'T00:00:00').getDay()))
+    .filter(d=>HORAS_ATENCION.includes(h5(d.hora))&&!(d.fecha===desde&&h5(d.hora)<=new Date().toTimeString().slice(0,5)))
+    .map(d=>d.fecha))].sort();
+}
+async function horasOcupadas(fecha){
+  const {data,error}=await sb.rpc('horarios_ocupados',{p_fecha:fecha});
+  if(error)throw error;
+  return (data||[]).map(x=>h5(x.hora));
+}
+async function perfil(){
+  perfilError=null;
+  const {data:{session}}=await sb.auth.getSession();
+  if(!session)return me={rol:null};
+  const email=(session.user.email||'').trim().toLowerCase();
+  const {data,error}=await sb.from('profiles').select('nombre,rol').eq('id',session.user.id).maybeSingle();
+  if(error){perfilError=error;return me={rol:null}}
+  if(!data){perfilError={code:'PROFILE_NOT_FOUND'};return me={rol:null}}
+  me={rol:data.rol,nombre:data.nombre,email};
+  return me;
+}
+
+/* ---------- Navegación ---------- */
+function go(v){
+  if(!VISTAS.includes(v))v='inicio';
+  document.querySelectorAll('.view').forEach(x=>x.classList.toggle('on',x.id=='v-'+v));
+  document.querySelectorAll('#links button').forEach(b=>b.classList.toggle('on',b.dataset.go==v));
+  if(v=='estudiante')renderEst(); if(v=='psicologo')renderPsi();
+  history.replaceState(null,'','#'+v);scrollTo(0,0);
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)go(b.dataset.go)});
+async function salir(){await sb.auth.signOut();me={rol:null};perfilError=null;go('inicio')}
+
+/* ---------- Respiración guiada ---------- */
+(function ciclo(){const t=$('#bt');t.firstChild.nodeValue='Inhala';setTimeout(()=>{t.firstChild.nodeValue='Exhala';setTimeout(ciclo,6000)},4000)})();
+
+/* ---------- Biblioteca (el contenido está dentro de la página) ---------- */
+function renderLib(){
+  $('#mood').innerHTML='<b>¿Cómo estás hoy?</b>'+MOODS.map((m,i)=>`<button data-mood="${i}">${m[0]} ${m[1]}</button>`).join('');
+  const cats=['Todas',...new Set(RECURSOS.map(r=>r.categoria))];
+  $('#chips').innerHTML=cats.map(c=>`<button class="${c==cat?'on':''}" data-cat="${esc(c)}">${esc(c)}</button>`).join('');
+  const l=RECURSOS.map((r,i)=>({r,i})).filter(o=>cat=='Todas'||o.r.categoria==cat);
+  $('#lib').innerHTML=l.map(({r,i})=>`<button class="card" data-rec="${i}"><span class="em">${r.emoji}</span><h3>${esc(r.titulo)}</h3><span class="muted">${esc(r.categoria)} · ${esc(r.duracion)}</span></button>`).join('');
+}
+function abrir(i){const r=RECURSOS[i];
+  dlg(`<h2>${r.emoji} ${esc(r.titulo)}</h2><p class="muted">${esc(r.categoria)} · ${esc(r.duracion)}</p><p>${esc(r.intro)}</p><ol>${r.pasos.map(p=>'<li>'+esc(p)+'</li>').join('')}</ol><div class="nota">${esc(r.nota)}</div><div class="acts" style="margin-top:14px"><button class="btn" data-go="estudiante" onclick="$('#dlg').close()">Hablar con la psicóloga</button><button class="btn alt" onclick="$('#dlg').close()">Cerrar</button></div>`)}
+$('#chips').onclick=e=>{const b=e.target.closest('[data-cat]');if(b){cat=b.dataset.cat;renderLib()}};
+$('#lib').onclick=e=>{const b=e.target.closest('[data-rec]');if(b)abrir(+b.dataset.rec)};
+$('#mood').onclick=e=>{const b=e.target.closest('[data-mood]');if(b)abrir(RECURSOS.findIndex(r=>r.categoria==MOODS[b.dataset.mood][2]))};
+function dlg(h){const d=$('#dlg');d.innerHTML=h;d.showModal()}
+$('#dlg').addEventListener('click',e=>{if(e.target.id=='dlg')e.target.close()});
+
+/* ---------- Acceso ---------- */
+function authBox(rol){
+  const est=rol=='estudiante',reg=est&&modoAuth=='registro';
+  return `<div class="card auth"><h2>${est?'Portal del estudiante':'Acceso de la psicóloga'}</h2>
+   ${est?`<div class="tabs"><button class="${!reg?'on':''}" data-m="login">Entrar</button><button class="${reg?'on':''}" data-m="registro">Crear cuenta</button></div><p class="muted">Regístrate con tu correo personal o institucional real. La contraseña la creas tú.</p>`:`<p class="muted">Inicia sesión con la cuenta cuyo perfil tenga el rol de psicólogo.</p>`}
+   <form autocomplete="on">
+    ${reg?'<label>Nombre completo</label><input name="nombre" required minlength="3" maxlength="120">':''}
+    <label>Correo</label><input name="correo" type="email" autocomplete="email" required>
+    <label>Contraseña</label><input name="clave" type="password" autocomplete="${reg?'new-password':'current-password'}" required ${reg?'minlength="8"':''}>
+    <p class="msg" role="alert"></p>
+    <button class="btn" style="width:100%;margin-top:6px">${reg?'Crear cuenta':'Entrar'}</button>
+    ${!reg?'<button type="button" class="btn alt sm" data-recovery style="width:100%;margin-top:8px">Olvidé mi contraseña</button>':''}
+   </form></div>`;
+}
+function renderCambioClave(v){
+  v.innerHTML=`<div class="card auth"><h2>Crear nueva contraseña</h2><p class="muted">Elige una contraseña de al menos 8 caracteres y confirma que sea la misma.</p><form id="f-nueva"><label>Nueva contraseña</label><input name="clave" type="password" minlength="8" autocomplete="new-password" required><label>Confirmar contraseña</label><input name="confirmar" type="password" minlength="8" autocomplete="new-password" required><p class="msg" role="alert"></p><button class="btn" style="width:100%">Guardar contraseña</button></form></div>`;
+  const f=v.querySelector('#f-nueva'),m=f.querySelector('.msg');
+  f.onsubmit=async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f));if(d.clave!==d.confirmar){m.textContent='Las contraseñas no coinciden.';return}const b=f.querySelector('button');b.disabled=true;m.textContent='Guardando...';try{const {error}=await sb.auth.updateUser({password:d.clave});if(error)throw error;m.classList.add('ok');m.textContent='Contraseña actualizada. Ya puedes iniciar sesión.';await sb.auth.signOut();setTimeout(()=>go('estudiante'),1200)}catch(error){m.textContent='No se pudo actualizar. Abre de nuevo el enlace de recuperación e inténtalo.';b.disabled=false}};
+}
+async function recuperarClave(v){
+  const email=v.querySelector('[name="correo"]')?.value.trim().toLowerCase();
+  const msg=v.querySelector('.msg');
+  if(!email){msg.textContent='Escribe tu correo primero y luego pulsa recuperar contraseña.';return}
+  const b=v.querySelector('[data-recovery]');if(b)b.disabled=true;
+  msg.classList.remove('ok');msg.textContent='Enviando solicitud...';
+  try{
+    const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});
+    if(error)throw error;
+    msg.classList.add('ok');msg.textContent='Si el correo está registrado, recibirás un enlace para cambiar la contraseña. Revisa también spam.';
+  }catch(error){msg.textContent='No se pudo enviar el enlace. Revisa el correo e inténtalo de nuevo.'}
+  finally{if(b)b.disabled=false}
+}
+async function entrar(e,rol,reg){
+  e.preventDefault();const f=e.target,m=f.querySelector('.msg'),d=Object.fromEntries(new FormData(f));m.textContent='';
+  const email=d.correo.trim().toLowerCase();
+  const boton=f.querySelector('button[type="submit"],button:not([type])');
+  if(boton)boton.disabled=true;
+  try{
+    if(reg){
+      const {data,error}=await sb.auth.signUp({email,password:d.clave,options:{data:{nombre:d.nombre.trim()}}});
+      if(error){m.textContent=/registered|already/i.test(error.message)?'Ese correo ya tiene cuenta.':'No se pudo crear la cuenta. Revisa los datos.';return}
+      if(!data.session){m.classList.add('ok');m.textContent='Cuenta creada. Revisa tu correo para confirmarla y luego entra.';return}
+    }else{
+      const {error}=await sb.auth.signInWithPassword({email,password:d.clave});
+      if(error){
+        if(/rate|many/i.test(error.message)){m.textContent='Demasiados intentos. Espera unos minutos.';return}
+        if(error.status===400){m.textContent='Correo o contraseña incorrectos.';return}
+        throw error;
+      }
+    }
+    await perfil();
+    if(perfilError){
+      const errorPerfil=perfilError;
+      await sb.auth.signOut();me={rol:null};
+      perfilError=null;
+      m.textContent=errorPerfil.code==='PROFILE_NOT_FOUND'
+        ?'La cuenta inició sesión, pero no tiene un perfil en la tabla profiles. Pide al administrador que configure el rol profesional y el mismo ID de usuario.'
+        :errorPerfil.code==='MFA_ERROR'
+          ?'La cuenta inició sesión, pero no se pudo comprobar la verificación en dos pasos. Revisa tu conexión e inténtalo de nuevo.'
+          :'La cuenta inició sesión, pero no se pudo validar el perfil. Revisa la conexión y vuelve a intentarlo.';
+      return;
+    }
+    if(me.rol!==rol){
+      await sb.auth.signOut();me={rol:null};
+      m.textContent=rol==='psicologo'
+        ?'La cuenta inició sesión, pero su perfil no tiene el rol psicólogo. Pide al administrador que lo configure.'
+        :'Esta cuenta no tiene el perfil de estudiante.';
+      return;
+    }
+    go(rol);
+  }catch(error){
+    m.textContent='No se pudo completar el inicio de sesión. Revisa tu conexión e inténtalo de nuevo.';
+  }finally{if(boton)boton.disabled=false}
+}
+
+async function responderPropuesta(id,acepta){
+  const {error}=await sb.rpc('responder_reprogramacion',{p_id:id,p_acepta:acepta});
+  if(error){alert(errTxt(error));return}
+  renderEst();
+}
+
+/* ---------- Estudiante ---------- */
+async function renderEst(){
+  const v=$('#v-estudiante');
+  if(me.rol!='estudiante'){
+    v.innerHTML=authBox('estudiante');
+    v.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{modoAuth=b.dataset.m;renderEst()});
+    v.querySelector('form').onsubmit=e=>entrar(e,'estudiante',modoAuth=='registro');
+    v.querySelector('[data-recovery]')?.addEventListener('click',()=>recuperarClave(v));return;
+  }
+  const [{data,error:errCitas},resultadoFechas]=await Promise.all([
+    sb.from('citas').select('id,fecha,hora,modalidad,estado,fecha_propuesta,hora_propuesta,estado_reprogramacion').order('fecha').order('hora'),
+    fechasParaReservar().then(data=>({data,error:null}),error=>({data:null,error}))
+  ]);
+  if(errCitas||resultadoFechas.error){
+    const error=errCitas||resultadoFechas.error;
+    v.innerHTML=`<div class="card"><p class="msg">${esc(errTxt(error))}</p><button class="btn alt" id="out">Cerrar sesión</button></div>`;
+    $('#out').onclick=salir;return;
+  }
+  const mias=(data||[]).map(c=>({...c,hora:h5(c.hora)}));
+  const fechas=resultadoFechas.data;
+  v.innerHTML=`<div class="top"><div><h2 class="t" style="margin:0">Hola, ${esc((me.nombre||'').split(' ')[0]||'')}</h2><p class="muted">Pide una cita y revisa cómo va. Agenda abierta para los próximos ${DIAS_RESERVA} días.</p></div><button class="btn alt" id="out">Cerrar sesión</button></div>
+  <div class="grid2">
+   <div class="card"><h3>Nueva cita</h3><p class="muted">Será con la psicóloga de bienestar.</p>
+    <form id="f-cita">
+     <label>Fecha de la cita</label><select name="fecha" required ${fechas.length?'':'disabled'}>${fechas.length?fechas.map(f=>`<option value="${esc(f)}">${esc(fecha(f))}</option>`).join(''):'<option value="">No hay fechas de atención disponibles</option>'}</select>
+     ${fechas.length?'':'<p class="helper-note">No hay horarios publicados. Vuelve a cargar las fechas más tarde o contacta a la psicóloga.</p><button type="button" class="btn alt sm" id="recargar-fechas">Volver a cargar fechas</button>'}
+     <label>Hora de la cita</label><select name="hora" required disabled><option value="">Selecciona una fecha</option></select>
+     <label>Modalidad</label><select name="mod"><option>Presencial</option><option>Virtual</option></select>
+     <label>¿Qué te gustaría trabajar?</label><textarea name="motivo" rows="3" minlength="5" maxlength="300" placeholder="Ej: me cuesta manejar el estrés escolar" required></textarea><p class="helper-note">Escribe una idea general. Evita incluir datos íntimos o información que no quieras compartir por este formulario.</p>
+     <p class="msg" role="alert"></p>
+     <button class="btn" style="width:100%" ${fechas.length?'':'disabled'}>Solicitar cita</button>
+    </form></div>
+   <div class="card"><h3>Mis citas</h3>
+    ${mias.length?mias.map(c=>`<div class="cita-card ${c.estado==='Pendiente'?'pending':c.estado==='Confirmada'?'confirmed':''}"><div class="section-head"><div><b>${fecha(c.fecha)} · ${c.hora}</b><div class="cita-meta"><span>${esc(c.modalidad)}</span><span class="tag ${c.estado}">${esc(c.estado)}</span></div></div>${c.estado!='Cancelada'?`<button class="btn bad sm" data-cancel="${c.id}">Cancelar</button>`:''}</div>${c.fecha_propuesta&&c.estado_reprogramacion==='Pendiente'?`<div class="status-note"><b>La psicóloga propone un cambio</b><br>Nuevo horario: ${fecha(c.fecha_propuesta)} · ${h5(c.hora_propuesta)}<div class="acts" style="margin-top:10px"><button class="btn sm" data-accept-proposal="${c.id}">Aceptar cambio</button><button class="btn alt sm" data-reject-proposal="${c.id}">Mantener mi cita</button></div></div>`:''}${c.estado==='Pendiente'?'<p class="slot-note">Tu solicitud está esperando respuesta de la psicóloga.</p>':''}</div>`).join(''):'<p class="muted" style="margin-top:8px">Aún no tienes citas. Completa el formulario para pedir la primera.</p>'}
+   </div></div>`;
+  $('#out').onclick=salir;
+  $('#recargar-fechas')?.addEventListener('click',renderEst);
+  const form=$('#f-cita'),selFecha=form.elements.fecha,selHora=form.elements.hora,msg=form.querySelector('.msg');
+  let solicitudHoras=0;
+  const cargarHoras=async()=>{
+    const solicitud=++solicitudHoras;
+    msg.textContent='';selHora.disabled=true;
+    if(!selFecha.value){selHora.innerHTML='<option value="">Selecciona una fecha</option>';return}
+    try{
+      const [registradas,ocupadas]=await Promise.all([horasDisponibles(selFecha.value),horasOcupadas(selFecha.value)]);
+      if(solicitud!==solicitudHoras)return;
+      const disponibles=horasFuturas(registradas,selFecha.value);
+      selHora.innerHTML=disponibles.length?disponibles.map(h=>`<option value="${esc(h)}" ${ocupadas.includes(h)?'disabled':''}>${esc(h)}${ocupadas.includes(h)?' — Ocupado':''}</option>`).join(''):'<option value="">No hay horas disponibles</option>';
+      selHora.disabled=!disponibles.some(h=>!ocupadas.includes(h));
+      const libre=disponibles.find(h=>!ocupadas.includes(h));
+      if(libre)selHora.value=libre;
+      if(disponibles.length&&!libre)msg.textContent='Todas las horas de esta fecha ya están ocupadas.';
+    }catch(error){if(solicitud===solicitudHoras){msg.textContent=errTxt(error);selHora.innerHTML='<option value="">No se pudieron cargar las horas</option>'}}
+  };
+  selFecha.onchange=cargarHoras;
+  if(fechas.length)cargarHoras();
+  form.onsubmit=async e=>{
+    e.preventDefault();msg.textContent='';
+    const d=Object.fromEntries(new FormData(form));
+    const boton=form.querySelector('button[type="submit"],button:not([type])');
+    if(boton)boton.disabled=true;
+    try{
+      const [registradas,ocupadas]=await Promise.all([horasDisponibles(d.fecha),horasOcupadas(d.fecha)]);
+      const disponibles=horasFuturas(registradas,d.fecha);
+      if(!disponibles.includes(d.hora)){msg.textContent='La psicóloga ya no ofrece esa hora. Elige otra fecha u hora.';await cargarHoras();return}
+      if(ocupadas.includes(d.hora)){msg.textContent='Ese horario acaba de ocuparse. Elige otra hora.';await cargarHoras();return}
+      const {data:{user},error:userError}=await sb.auth.getUser();
+      if(userError)throw userError;
+      if(!user)throw new Error('Tu sesión expiró. Inicia sesión de nuevo para solicitar la cita.');
+      const {error}=await sb.from('citas').insert({
+        estudiante_id:user.id,fecha:d.fecha,hora:d.hora,modalidad:d.mod,motivo:d.motivo.trim()
+      });
+      if(error){msg.textContent=errTxt(error);await cargarHoras();return}
+      await renderEst();
+    }catch(error){msg.textContent=errTxt(error)}
+    finally{if(boton)boton.disabled=false}
+  };
+  v.querySelectorAll('[data-cancel]').forEach(b=>b.onclick=async()=>{const {error}=await sb.rpc('cambiar_cita',{p_id:+b.dataset.cancel,p_estado:'Cancelada'});if(error)alert(errTxt(error));renderEst()});
+  v.querySelectorAll('[data-accept-proposal]').forEach(b=>b.onclick=()=>responderPropuesta(+b.dataset.acceptProposal,true));
+  v.querySelectorAll('[data-reject-proposal]').forEach(b=>b.onclick=()=>responderPropuesta(+b.dataset.rejectProposal,false));
+}
+
+/* ---------- Psicóloga ---------- */
+async function prepararCalendario(){
+  if(migracionAgenda)return migracionAgenda;
+  migracionAgenda=(async()=>{
+    const {data:{user},error:userError}=await sb.auth.getUser();
+    if(userError)throw userError;
+    const hoyFecha=hoy(),hasta=fechaTrasDias(hoyFecha,DIAS_RESERVA-1);
+    const marcador=user.user_metadata?.[MARCADOR_CALENDARIO];
+    const cursorValido=typeof marcador==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(marcador);
+    const {data:agendaExistente,error:agendaError}=await sb.from(TABLA_DISPONIBILIDAD)
+      .select('fecha,hora').gte('fecha',hoyFecha).lte('fecha',hasta);
+    if(agendaError)throw agendaError;
+    agendaVacia=(agendaExistente||[]).length===0;
+    const desde=agendaVacia?hoyFecha:(cursorValido&&marcador>=hoyFecha?fechaTrasDias(marcador,1):hoyFecha);
+    if(desde>hasta)return;
+    const yaDisponibles=new Set((agendaExistente||[]).map(d=>`${d.fecha}|${h5(d.hora)}`));
+    const horarios=[];
+    for(let fechaAgenda=desde;fechaAgenda<=hasta;fechaAgenda=fechaTrasDias(fechaAgenda,1)){
+      if(!DIAS_ATENCION.includes(new Date(fechaAgenda+'T00:00:00').getDay()))continue;
+      for(const hora of HORAS_ATENCION)
+        if(!yaDisponibles.has(`${fechaAgenda}|${hora}`))horarios.push({fecha:fechaAgenda,hora});
+    }
+    for(let inicio=0;inicio<horarios.length;inicio+=500){
+      const {error}=await sb.from(TABLA_DISPONIBILIDAD).insert(horarios.slice(inicio,inicio+500));
+      if(error)throw error;
+    }
+    const metadata={...user.user_metadata,[MARCADOR_CALENDARIO]:hasta};
+    const {error:markerError}=await sb.auth.updateUser({data:metadata});
+    if(markerError)throw markerError;
+    agendaVacia=false;
+  })();
+  try{await migracionAgenda}
+  finally{migracionAgenda=null}
+}
+async function renderPsi(){
+  const v=$('#v-psicologo');
+  if(perfilError){
+    v.innerHTML=`<div class="card auth"><p class="msg">No se pudo validar el acceso profesional. Revisa la conexión e inténtalo de nuevo.</p><button class="btn alt" id="reintentar">Reintentar</button><button class="btn bad" id="out" style="margin-left:8px">Cerrar sesión</button></div>`;
+    $('#reintentar').onclick=async()=>{await perfil();renderPsi()};$('#out').onclick=salir;return;
+  }
+  if(me.rol!='psicologo'){
+    v.innerHTML=authBox('psicologo');
+    v.querySelector('form').onsubmit=e=>entrar(e,'psicologo',false);
+    v.querySelector('[data-recovery]')?.addEventListener('click',()=>recuperarClave(v));return;
+  }
+  let {data,error}=await sb.from('citas').select('id,fecha,hora,modalidad,motivo,estado,fecha_propuesta,hora_propuesta,estado_reprogramacion,profiles(nombre)').order('fecha').order('hora');
+  if(error){
+    const resultado=await sb.from('citas').select('id,fecha,hora,modalidad,motivo,estado,fecha_propuesta,hora_propuesta,estado_reprogramacion').order('fecha').order('hora');
+    data=resultado.data;error=resultado.error;
+  }
+  const mias=(data||[]).map(c=>({...c,hora:h5(c.hora),estudiante:c.profiles?.nombre||'Estudiante'})),n=s=>mias.filter(c=>c.estado==s).length;
+  v.innerHTML=`<div class="top"><div><h2 class="t" style="margin:0">${esc(me.nombre||'Psicólogo/a')}</h2><p class="muted">${n('Pendiente')} pendientes · ${n('Confirmada')+n('Reprogramada')} confirmadas</p></div><button class="btn alt" id="out">Cerrar sesión</button></div>
+  ${error?`<div class="status-note" role="alert">No se pudieron cargar las citas: ${esc(errTxt(error))}. Las demás funciones del panel siguen disponibles. <button class="btn alt sm" id="reintentar-citas">Volver a cargar citas</button></div>`:''}
+  <div class="status-note" id="agenda-status" role="status">Preparando el calendario de citas…</div>
+  <div class="card" style="margin-top:20px"><h3>Marcar fechas y horas no disponibles</h3><p class="muted">Atención de lunes a viernes, de 6:00 a 17:00, en citas de una hora. Marca las horas en que no puedes atender; las citas ya agendadas no se modifican. Para bloquear todo el día, marca todas las horas.</p>
+   <form id="f-disp"><label>Fecha</label><input name="fecha" type="date" min="${hoy()}" max="${fechaTrasDias(hoy(),DIAS_RESERVA-1)}" value="${proximaFechaAtencion()}" required disabled>
+    <button type="button" class="btn alt sm" id="bloquear-dia">Bloquear el día completo</button>
+    <div class="slot-grid" id="lista-horas"></div>
+    <p class="msg" role="alert"></p><button type="button" class="btn alt sm" id="reintentar-agenda" hidden>Reintentar preparación</button><button type="button" class="btn alt sm" id="recargar-bloqueos" hidden>Volver a cargar horas</button><button type="submit" class="btn" disabled>Guardar bloqueos</button>
+   </form></div>
+  <div class="card" style="margin-top:20px"><h3>Mis citas</h3>
+  ${mias.length?mias.map(c=>`<div class="cita-card ${c.estado==='Pendiente'?'pending':c.estado==='Confirmada'?'confirmed':''}"><div class="section-head"><div><b>${fecha(c.fecha)} · ${c.hora} · ${esc(c.modalidad)}</b><div class="cita-meta"><span>${esc(c.estudiante)}</span><span class="tag ${c.estado}">${esc(c.estado)}</span></div><span class="muted">Motivo: ${esc(c.motivo)}</span></div><div class="acts">${c.estado==='Pendiente'?`<button class="btn sm" data-ok="${c.id}">Aceptar cita</button>`:''}${c.estado!='Cancelada'&&c.estado_reprogramacion!=='Pendiente'?`<button class="btn alt sm" data-re="${c.id}" data-f="${c.fecha}" data-h="${c.hora}">Proponer cambio</button><button class="btn bad sm" data-no="${c.id}">Cancelar</button>`:''}</div>${c.estado_reprogramacion==='Pendiente'?`<div class="status-note">Esperando que el estudiante responda la propuesta: ${fecha(c.fecha_propuesta)} · ${h5(c.hora_propuesta)}</div>`:''}</div>`).join(''):'<p class="muted" style="margin-top:8px">Todavía no hay citas.</p>'}</div>`;
+  $('#out').onclick=salir;
+  $('#reintentar-citas')?.addEventListener('click',renderPsi);
+  const fDisp=$('#f-disp'),msgDisp=fDisp.querySelector('.msg'),btnDisp=fDisp.querySelector('button[type="submit"],button:not([type])');
+  const listaHoras=$('#lista-horas');
+  const btnRecargar=$('#recargar-bloqueos');
+  const estadoAgenda=$('#agenda-status'),btnPreparar=$('#reintentar-agenda');
+  let horasDisponiblesDia=[],horasReservadas=[],bloqueosCargados=false,solicitudDisp=0;
+  const dibujarHoras=()=>{
+    listaHoras.innerHTML=HORAS_ATENCION.map(h=>{
+      const reservado=horasReservadas.includes(h);
+      const bloqueada=!horasDisponiblesDia.includes(h)&&!reservado;
+      return `<label class="slot"><input type="checkbox" name="hora" value="${esc(h)}" ${bloqueada?'checked':''} ${reservado?'disabled':''}><span>${esc(h)}</span><span>${reservado?'(Cita reservada)':bloqueada?'(No disponible)':''}</span></label>`;
+    }).join('');
+  };
+  const cargarBloqueos=async()=>{
+    const solicitud=++solicitudDisp;
+    bloqueosCargados=false;btnDisp.disabled=true;btnRecargar.hidden=true;msgDisp.classList.remove('ok');msgDisp.textContent='';
+    try{
+      const fechaSeleccionada=fDisp.elements.fecha.value;
+      const [disponibles,ocupadas]=await Promise.all([horasDisponibles(fechaSeleccionada),horasOcupadas(fechaSeleccionada)]);
+      if(solicitud!==solicitudDisp)return;
+      horasReservadas=ocupadas;
+      horasDisponiblesDia=disponibles;
+      dibujarHoras();
+      bloqueosCargados=true;btnDisp.disabled=false;fDisp.elements.fecha.disabled=false;
+      return true;
+    }catch(error){if(solicitud===solicitudDisp){msgDisp.textContent=errTxt(error);btnRecargar.hidden=false;horasDisponiblesDia=[];horasReservadas=[];dibujarHoras()}return false}
+  };
+  btnRecargar.onclick=cargarBloqueos;
+  const inicializarAgenda=async()=>{
+    btnPreparar.disabled=true;
+    estadoAgenda.hidden=false;
+    estadoAgenda.textContent='Preparando el calendario de citas…';
+    try{
+      await prepararCalendario();
+      estadoAgenda.hidden=true;
+      btnPreparar.hidden=true;
+    }catch(error){
+      estadoAgenda.textContent=`No se pudo preparar automáticamente el calendario: ${errTxt(error)}. Las citas y sus acciones siguen disponibles.`;
+      btnPreparar.hidden=false;
+    }finally{btnPreparar.disabled=false}
+    await cargarBloqueos();
+  };
+  btnPreparar.onclick=inicializarAgenda;
+  $('#bloquear-dia').onclick=()=>{
+    listaHoras.querySelectorAll('[name="hora"]:not(:disabled)').forEach(c=>c.checked=true);
+  };
+  fDisp.elements.fecha.onchange=cargarBloqueos;
+  inicializarAgenda();
+  fDisp.onsubmit=async e=>{
+    e.preventDefault();
+    if(!bloqueosCargados)return;
+    bloqueosCargados=false;btnDisp.disabled=true;msgDisp.classList.remove('ok');msgDisp.textContent='';
+    const fechaElegida=fDisp.elements.fecha.value;
+    const elegidas=[...listaHoras.querySelectorAll('[name="hora"]:checked')].map(c=>c.value);
+    try{
+      const actuales=await horasDisponibles(fechaElegida);
+      const agregar=HORAS_ATENCION.filter(h=>!elegidas.includes(h)&&!actuales.includes(h)&&!horasReservadas.includes(h));
+      const quitar=actuales.filter(h=>elegidas.includes(h)&&!horasReservadas.includes(h));
+      if(agregar.length){
+        const {error}=await sb.from(TABLA_DISPONIBILIDAD).insert(agregar.map(h=>({fecha:fechaElegida,hora:h})));
+        if(error)throw error;
+      }
+      if(quitar.length){
+        const {error}=await sb.from(TABLA_DISPONIBILIDAD).delete().eq('fecha',fechaElegida).in('hora',quitar);
+        if(error)throw error;
+      }
+      if(!await cargarBloqueos()){
+        msgDisp.textContent='Los cambios se enviaron, pero no se pudo verificar el calendario. Vuelve a cargar las horas.';
+        return;
+      }
+      msgDisp.classList.add('ok');msgDisp.textContent='Bloqueos guardados.';
+    }catch(error){await cargarBloqueos();msgDisp.classList.remove('ok');msgDisp.textContent=errTxt(error)}
+  };
+  const accion=async(estado,id)=>{const {error}=await sb.rpc('cambiar_cita',{p_id:id,p_estado:estado});if(error)alert(errTxt(error));renderPsi()};
+  v.querySelectorAll('[data-ok]').forEach(b=>b.onclick=()=>accion('Confirmada',+b.dataset.ok));
+  v.querySelectorAll('[data-no]').forEach(b=>b.onclick=()=>accion('Cancelada',+b.dataset.no));
+  v.querySelectorAll('[data-re]').forEach(b=>b.onclick=()=>{
+    dlg(`<h2>Proponer otro horario</h2><p class="muted">Elige una hora habilitada y libre, el mismo día o en otra fecha. El cambio no queda confirmado hasta que el estudiante lo acepte.</p><form id="f-re"><label>Nueva fecha</label><input name="fecha" type="date" min="${hoy()}" max="${fechaTrasDias(hoy(),DIAS_RESERVA-1)}" value="${b.dataset.f}" required>
+     <label>Nueva hora</label><select name="hora" required disabled><option value="">Cargando horas...</option></select>
+     <p class="msg" role="alert"></p><div class="acts" style="margin-top:10px"><button class="btn">Guardar cambio</button><button type="button" class="btn alt" onclick="$('#dlg').close()">Cancelar</button></div></form>`);
+    const formRe=$('#f-re'),selHoraRe=formRe.elements.hora,msgRe=formRe.querySelector('.msg');
+    let solicitudRe=0;
+    const cargarHorasRe=async()=>{
+      const solicitud=++solicitudRe,fechaRe=formRe.elements.fecha.value;
+      selHoraRe.disabled=true;msgRe.textContent='';
+      try{
+        const [registradas,ocupadas]=await Promise.all([horasDisponibles(fechaRe),horasOcupadas(fechaRe)]);
+        if(solicitud!==solicitudRe)return;
+        const disponibles=horasFuturas(registradas,fechaRe);
+        const opciones=disponibles.filter(h=>!ocupadas.includes(h)||fechaRe===b.dataset.f&&h===h5(b.dataset.h));
+        if(fechaRe===b.dataset.f&&!opciones.includes(h5(b.dataset.h)))opciones.push(h5(b.dataset.h));
+        selHoraRe.innerHTML=opciones.length?opciones.sort().map(h=>`<option value="${esc(h)}">${esc(h)}</option>`).join(''):'<option value="">No hay horas libres en esta fecha</option>';
+        selHoraRe.disabled=!opciones.length;
+        if(opciones.includes(h5(b.dataset.h))&&fechaRe===b.dataset.f)selHoraRe.value=h5(b.dataset.h);
+      }catch(error){if(solicitud===solicitudRe){msgRe.textContent=errTxt(error);selHoraRe.innerHTML='<option value="">No se pudieron cargar las horas</option>'}}
+    };
+    formRe.elements.fecha.onchange=cargarHorasRe;
+    cargarHorasRe();
+    formRe.onsubmit=async e=>{
+      e.preventDefault();const d=Object.fromEntries(new FormData(formRe));
+      try{
+        const [registradas,ocupadas]=await Promise.all([horasDisponibles(d.fecha),horasOcupadas(d.fecha)]);
+        const disponibles=horasFuturas(registradas,d.fecha);
+        const esMismaCita=d.fecha===b.dataset.f&&d.hora===h5(b.dataset.h);
+        if(!disponibles.includes(d.hora)&&!esMismaCita)return msgRe.textContent='La psicóloga no ofrece esa hora. Elige otra.';
+        if(ocupadas.includes(d.hora)&&!esMismaCita)return msgRe.textContent='Ese horario acaba de ocuparse. Elige otra hora.';
+        const {error}=await sb.rpc('proponer_reprogramacion',{p_id:+b.dataset.re,p_fecha:d.fecha,p_hora:d.hora});
+        if(error)return msgRe.textContent=errTxt(error);
+        $('#dlg').close();renderPsi();
+      }catch(error){msgRe.textContent=errTxt(error)}
+    };
+  });
+}
+
+/* ---------- Inicio ---------- */
+(async()=>{
+  await perfil();
+  renderLib();
+  const esRecuperacion=location.hash.includes('type=recovery');
+  go(esRecuperacion?'estudiante':((location.hash||'#inicio').slice(1)));
+  if(esRecuperacion)renderCambioClave($('#v-estudiante'));
+})();
+</script>
+ </body>
+</html>
